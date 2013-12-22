@@ -1,10 +1,11 @@
 library(ggplot2)
+library(reshape)
 
 ## custom ggplot theme
 theme_custom <- function(base_size=15){
 
   none <- theme_blank()
-  
+
   structure(list(
                  panel.grid.major=none,
                  panel.grid.minor=none,
