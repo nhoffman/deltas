@@ -1,0 +1,32 @@
+* text
+* figures
+** DONE update legend for fig 1
+** DONE look at lines in fig 2 
+- are they labeled properly in the legend?
+- whet are there two red lines in some panels?
+* tables
+** DONE table 1: add reference ranges, current cutoffs, daily volume
+** DONE change table 2 to mislabel rate of 1 in 500, 1 in 5000
+** DONE remove table 3
+
+* analysis
+** DONE recheck cutoffs - do we want do update if changed?
+- CO2 < 8 is a delta not included in our current delta cutoffs
+
+** TODO Maximize the number of desired iterations without oversampling
+- the pick function in getSamples.R samples without replacement. This
+  only allows at maximum an iteration number equal to the data
+  matching the limit argument.
+- Should we replace?  
+* paper
+** DONE Discussion
+- add sec4_discussion to repository
+
+** TODO simulation of UWMC data to examine three best analytes using N cutoffs 
+- use 20%, 80%, prbe cutoffs
+- possibly do this in a follow up article using data from another location (Northwest?)
+** DONE check math on TTP and reconcile with actual numbers of failed deltas
+
+* administrative
+** TODO NH needs to double check IRB forms
+** TODO can we identify institution?

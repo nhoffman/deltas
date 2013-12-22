@@ -1,0 +1,91 @@
+We performed a simulation experiment using historical laboratory data
+to determine the effectiveness of current delta check cutoffs in
+identifying mislabeling events in the clinical laboratory. An ROC
+curve describing delta check performance was generated and a
+corresponding AUC calculated for a selection of common chemistry and
+hematology tests. In addition to evaluating the performance of the
+delta check cutoffs currently in use in our laboratory, we
+investigated the performance of three alternative delta check cutoffs
+defined as the values resulting in either 20\% sensitivity or 80\%
+sensitivity, or the precision-recall break-even point. To investigate
+the implications for defining specific values for delta check cutoffs
+on laboratory work flow, we further modeled the performance of each
+delta check cutoff at several different hypothetical mislabelling
+rates.
+
+A simulation-based approach to considering the performance of
+delta-check rules is helpful for several reasons. First, because it is
+not always possible to ascertain whether or not a specimen is
+correctly labeled once it reaches the laboratory, it is difficult to
+measure the true performance of delta checks. Rather, performance is
+often judged subjectively and anecdotally. Second, the mislabeling
+rate is usually too low to provide sufficient power to evaluate delta
+check performance prospectively.
+
+Not surprisingly, analytes varied greatly in their usefulness for
+identifying specimen mislabeling. MCV, known for its low biological
+variability within an individual, had the largest AUC and produced the
+fewest number of total positives at the highest sensitivity tested
+(80\%). Conversely, sodium and potassium, two analytes commonly used
+for delta check purposes, had much poorer performance. For these two
+tests (and others with comparable performance), we regard the number
+of total positive results at any cutoff resulting in an operationally
+useful sensitivity as unacceptable considering the potential
+technologist time that would be involved in investigating delta check
+failures given our specimen volume. Strikingly, the ``best guess''
+deltas used in our laboratory for both potassium and IGAP (the
+calculated anion gap) have values well above the 95th percentile of
+the distribution of between-patient delta values (Figure
+\ref{fig:current}). The implication of this observation is that delta
+checks using these cutoffs and analytes are extremely unlikely to
+identify true mislabel events, and are worth eliminating as a routine
+quality-assurance activity.
+
+The data presented in Figure \ref{fig:auc_boxplot} reveals another
+caveat: although delta checks for some laboratory tests performed
+comparably for detecting mislabeled specimens using data from both
+institutions, others did not. We can only speculate at the reasons for
+the differences, although the following explanations may be
+reasonable.  HCT performed less well at Hospital 2, where a large
+population of cancer and transplant patients receive frequent blood
+transfusions. Conversely, delta checks using measurements of
+electrolytes (Cl, C02, Na, IGAP) and renal function tests (BUN, CRE)
+performed less well at Hospital 1, where trauma and critical care
+patients (perhaps receiving intensive intravascular support with
+fluids) are more prevalent. Whatever the underlying reason, our conclusion is that the performance of delta calculations using a given
+test is likely to be dependent on the characteristics of the patient
+populations.
+
+Our purpose in constructing Table \ref{tab:prevalence} is to provide a
+useful guide for selecting delta cutoffs for these common tests over a
+range of institutional mislabel rates (while recognizing the caution
+that needs to be taken in generalizing these results). For example,
+one notable finding is that the total number of delta failures is much
+more sensitive to the value of the delta cutoff than to the
+mislabeling prevalence. The explanation for this observation lies in
+the fact that most of the delta failures are false positives, which
+occur at a frequency essentially independent of the mislabeling
+prevalence. This allows one to conclude that some analytes can be
+discarded as useful targets of delta checks in the setting of
+essentially any mislabeling rate likely to be
+encountered. Furthermore, as the institutional mislabeling rate
+decreases, essentially all positive delta checks will be
+false-positives. At a mislabeling rate of 1 in 5000, only the MCV
+provides a useful PPV at any cutoff considered. In such a low
+prevalence situation, the rationale for performing delta checks on any
+of the routine chemistry tests becomes questionable indeed.
+
+It is instructive to apply recognized guidelines for determining the
+necessary sensitivity or specificity of a clinical test to delta
+checks \cite{galen:1975aa}. Delta checks require high sensitivity,
+because a mislabeled specimen has the potential to cause serious harm;
+a delta check failure is ``treatable'' by investigating and/or
+cancelling the test; and no patient harm results from a false positive
+delta check failure. However, false positive delta tests do have a
+cost in the form of staff time required to follow up, inappropriately
+cancelled tests, and the work involved in maintaining the
+infrastructure for performing the delta checks themselves. In this
+study we observe that the yield of delta checks for identifying
+mislabeled specimens is likely to be low in certain contexts, and
+should perhaps prompt a reconsideration of this extremely prevalent
+clinical laboratory practice.

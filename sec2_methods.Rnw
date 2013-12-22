@@ -1,0 +1,75 @@
+\subsection{Historical laboratory data}
+
+<<echo=FALSE>>=
+source('scripts/common.R')
+sources <- commandArgs(trailingOnly=TRUE)
+desc <- loadf(sources[1])[[1]]
+samples <- loadf(sources[2])[[1]]
+iterations <- nrow(samples)
+@
+
+All results for the selected laboratory tests performed on hospital
+inpatients between November 2009 through March 2010 were retrieved
+from our laboratory information system database. Laboratory tests
+performed on blood, serum, or plasma included (abbreviations used
+throughout this paper in parentheses): anion gap (IGAP); calcium (Ca);
+total carbon dioxide (CO2); chloride (Cl); creatinine (CRE); glucose
+(GLU); hematocrit (HCT); mean cellular volume (MCV); potassium (K);
+sodium (Na); and blood urea nitrogen (BUN).
+
+We retrieved data from clinical laboratories serving two hospitals:
+Hospital 1 is a 413 bed Level IV trauma and critical care center and
+county hospital; Hospital 2 is a 450 bed major academic medical
+center with a large inpatient cancer and transplant services. Testing
+platforms (identical at both laboratories) included the Beckman
+UniCel\textregistered DxC 800 Synchron Clinical Systems and the Sysmex
+XE-2100 Automated Hematology System. Data was anonymised by
+irreversibly encoding hospital and laboratory accession numbers so
+that individual results could be grouped by patient and specimen
+without retaining personally identifying information. Dates and times
+were converted to relative values, retaining only the temporal spacing
+between specimens. A total of \Sexpr{desc$simdata$simUniquePatNum}
+individual patients were represented by \Sexpr{desc$simdata$tally}
+specimens.
+
+\subsection{Sampling experiments}
+
+\newcommand{\speci}{$S_2P_x$}
+\newcommand{\specj}{$S_1P_x$}
+\newcommand{\speck}{$S_1P_y$}
+
+Delta comparisons between laboratory tests performed on two successive
+specimens were simulated using historical data according to the
+following procedure. First, a specimen \speci\ belonging to patient
+$P_x$ is selected at random from the historical data. A specimen
+\specj\ collected from the same patient is selected if one exists with
+results reported within 72 hours before results from \speci;
+otherwise, results for delta checks for all tests performed on \speci\
+are given a missing value. This latter condition reflects the
+situation in which a delta check calculation is not performed because
+no preceding eligible specimen exists. Finally, a third specimen
+\speck\ collected from a different patient $P_y$ is selected at random
+after excluding all specimens from patient $P_x$. This process was
+repeated with replacement for \Sexpr{iterations} iterations. At this
+number of iterations, approximately 95\% of (\speci,\specj) pairs were
+unique (Supplementary Figure 1). Larger and smaller numbers of
+iterations yielded comparable results.
+
+For test results $t_1$ and $t_2$ from a pair of specimens $S_1$ and
+$S_2$, a value $\delta$ was calculated as $|t_1-t_2|$. A delta
+calculation was performed for laboratory test results from each
+($S_1,S_2$) pair. The comparison between test results from each pair
+of specimens \speci\ and \speck\ represents a simulated mislabeling
+event. Because not every test was performed on each specimen, missing
+values were assigned to any $\delta$ for which test results were
+missing for one or both specimens in a pair. In this way, a
+distribution of delta calculations between pairs of test results from
+specimens either from the same patient or from two different patients
+was generated.
+
+All analyses were performed in R \cite{R:2005aa}. ROC
+analyses were carried out using the \texttt{ROCR} package
+\cite{sing:2005}. Graphics and tables were produced using the
+\texttt{lattice} \cite{sarkar:2008aa} and \texttt{xtable}
+\cite{dahl:2008aa} packages, respectively.
+

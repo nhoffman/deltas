@@ -1,0 +1,110 @@
+\subsection{Performance of current and optimized delta cutoffs}
+
+%% Contains the ROC analysis and figure generation for current analytes
+
+We simulated distributions of delta values between clinical test
+results performed on pairs of samples in which the second sample in
+each pair was drawn from the same patient as the first (``properly
+labeled'') or a different, randomly selected patient. Using this data,
+we constructed receiver operating characteristic (ROC) curves to
+assess the overall usefulness of the delta checks using each analyte
+to identify mislabeled specimens (Figure \ref{fig:AUC}). The ROC area
+under the curve (AUC) for each analyte provides a familiar measure of
+discriminatory performance and demonstrates the wide range of
+usefulness among analytes. AUCs ranged from greater than 0.9 for mean
+corpuscular volume (MCV) to as low as 0.6 for the calculated anion gap
+(IGAP) for these analytes, illustrating the wide range of usefulness
+among analytes.
+
+\subsection{Comparison of the utility of analytes for identifying mislabeling events}
+
+%% comparison of the ``best guess'', ``NPV'', "PPV",  and ``PRBE'' methods for optimal cutoffs 
+
+Delta check calculations are typically implemented by defining a
+discrete threshold value (a ``cutoff''), above which the delta check
+is said to have failed. Four methods for defining delta cutoffs were
+compared. The first method represents a ``best guess'' approach to
+establishing delta cutoffs and reflects current practice in our
+laboratory (note that delta checks are not performed for all analytes
+described here; hence this cutoff is undefined for certain laboratory
+tests). The second and third methods define cutoffs resulting in 20\%
+sensitivity or 80\% sensitivity, respectively. Finally, the fourth
+method defined a cutoff at the precision-recall break-even point
+(PRBE), which is the value at which precision (the fraction of all
+positive results that are true positives) and recall (the fraction of
+mislabeled specimens that are positive) are equal.
+
+Figure \ref{fig:current} illustrates the distribution of delta values
+for simulated comparisons between correctly labeled or mislabeled
+specimens; these are labeled ``Same'' and ``Different'',
+respectively. For each analyte, the shaded region corresponds to the
+range of delta cutoffs providing between 80\% sensitivity (bottom of
+the region) and 20\% sensitivity (top of the region). The red line
+corresponds to the current delta cutoff in use at our institution
+while the black line is the cutoff at the PRBE point.
+
+One measure of the performance of a delta-check rule defining a
+specific cutoff value is the number of rule violations that result
+from biological variation rather than mislabeling events (i.e., false
+positives). The absolute number of false positives is particularly
+relevant to lab operations because of the time spent investigating
+each failed delta check, which can can range from a few minutes to
+several hours depending upon laboratory policy and how quickly the
+reason for the failure can be discovered. Additional measures of rule
+performance include the frequency of true positives (mislabels
+identified by a failed delta-check rule), false negatives (mislabels
+passing the delta-check rule) and true negatives (properly labeled
+specimens passing the delta-check rule).
+
+To extend the analogy between delta check rules and screening tests,
+the operational performance of a delta rule depends not only on the
+performance of the rule itself (i.e., sensitivity and specificity for
+detecting error), but also on the prevalence of errors in the system
+being monitored. To help guide selection of delta thresholds for the
+analytes considered here, we determined the performance of cutoffs
+that were defined using each of the methods described above given a
+range of values for error prevalence. Table \ref{tab:prevalence}
+attempts to provide a practical guide to cutoff selection by
+presenting the results in the context of mislabeling prevalence (1 in
+500, 1 in 1000, and 1 in 5000) and daily test volume. In addition to
+familiar measures of performance such as positive predictive value
+(PPV) and negative predictive value (NPV), we also calculated the
+predicted total number of positive delta check events per thousand
+tests run (PPT) as a measure of impact on lab operations. As expected,
+at a given mislabeling prevalence, lowering the the delta cutoff
+increased the sensitivity of the delta check for detecting mislabeling
+events at the cost of increasing the total number of delta failures
+(increased PPT). 
+
+When comparing delta cutoffs producing 20\% sensitivity
+to those producing 80\% sensitivity, the predominant effect on
+laboratory operations is the increase in the total number of
+positive results at the higher sensitivity cutoff, as would be
+expected given the necessary tradeoff between sensitivity and
+specificity. 
+
+\subsection{Assessment of model stability and applicability to other institutions}
+
+The estimates for delta check performance described above were
+generated by randomly sampling historical patient data. To estimate
+the stability of these estimates, and to asses whether the results
+could be generalized to other institutions, we performed a more
+extensive resampling experiment using the data from Hospital 1. Using
+the same procedure described above, we performed 1000 independent
+simulation experiments, each consisting of 1000 sampling events. Each
+experiment resulted in an estimate of the AUC for each analyte. In
+addition, we performed an identical series of experiments using data
+from the clinical laboratory serving Hospital
+2. Figure \ref{fig:auc_boxplot} represents the distribution of AUC
+values from both institutions. We also used this experiment to assess
+whether the results described in Table \ref{tab:prevalence} were
+representative. The values of each AUC generated in the first sampling
+experiment are superimposed on the distribution of all values from
+Hospital 1 in Figure \ref{fig:auc_boxplot}.
+
+This experiment demonstrated that the performance of delta checks
+using MCV, Ca, K, and Glu were comparable using both data
+sets. However, the performance of HCT, BUN, CRE, Cl, C02, Na, and IGAP
+appeared to differ. For each of the analytes, the value for the AUC
+fell within the inner quartile range of the distribution of values
+calculated from Hospital 1 data.

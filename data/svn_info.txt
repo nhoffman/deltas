@@ -1,0 +1,11 @@
+Path: .
+URL: https://ngh.labmed.washington.edu/papers/deltas
+Repository Root: https://ngh.labmed.washington.edu/papers
+Repository UUID: 39497fdd-fbb5-4638-97c2-a2c47efc7ac5
+Revision: 148
+Node Kind: directory
+Schedule: normal
+Last Changed Author: fstrath
+Last Changed Rev: 148
+Last Changed Date: 2011-05-20 16:31:52 -0700 (Fri, 20 May 2011)
+

@@ -1,0 +1,85 @@
+<<loadData,echo=FALSE>>=
+source('scripts/common.R')
+sources <- commandArgs(trailingOnly=TRUE)
+@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%% Figures %%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\begin{figure}[p]
+  \centering
+%\includegraphics[width=\textwidth]{figs/roc.pdf}
+\includegraphics[width=\textwidth]{\Sexpr{matcharg(sources, 'roc')}}
+
+\caption[Delta ROC plots]{Receiver operator characteristic (ROC)
+  curves describing delta check performance for selected analytes from
+  the Basic Metabolic Panel and Complete Blood Count. The value of the
+  current cutoff is indicated on each plot when defined (solid black
+  horizontal line).}
+\label{fig:AUC}
+\end{figure}
+
+\clearpage
+\begin{figure}[p]
+%\includegraphics[width=\textwidth]{figs/bwplots.pdf}
+\includegraphics[width=\textwidth]{\Sexpr{matcharg(sources, 'bwplots')}}
+
+\caption[Current cutoff deltas, box and whisker plots, no
+outliers]{Distributions of delta calculations from the same patient
+  (``Same'') and different patients (``Different'') shown as box and
+  whisker plots. Values of thresholds are indicated as follows: ``best
+  guess'' delta check cutoffs, dashed red line; delta check cutoffs
+  calculated to provide 20\% sensitivity and 80\% sensitivity (upper
+  and lower boundaries of the grey shaded regions, respectively); the
+  precision-recall break-even point (PRBE), solid black line.}
+\label{fig:current}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%% Tables %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%
+\clearpage
+\begin{table}[p]\tiny
+%\input{figs/bigtab}
+\input{\Sexpr{matcharg(sources, 'bigtab')}}
+\caption[Performance of delta check cutoffs.]{Performance of
+  ``best guess'' delta cutoffs, 20\% sensitivity cutoffs, 80\% sensitivity
+  cutoffs and PRBE cutoffs at a mislabel prevalence of 1 in 500, 1 in
+  1000 and 1 in 5000. Columns are labeled as follows: cutoff, delta
+  threshold in units of analyte measurement; PPV, positive predictive
+  value; NPV, negative predictive value; PPT, total positives per 1000
+  samples.}
+\label{tab:prevalence}
+\end{table}
+
+%% boxplot of multiple simulations
+\clearpage
+\begin{figure}[p]
+%\includegraphics[]{figs/boxplot.pdf} 
+\includegraphics[width=\textwidth]{\Sexpr{matcharg(sources, 'auc_boxplot')}}
+\caption[Distribution of AUCs from multiple simulations]{Distributions
+  of AUC values describing delta check performance in 1000 experiments
+  of 1000 sampling events each; results using data from Hospital 1 and
+  Hospital 2 are shown as white or shaded box and whisker plots,
+  respectively. AUC values from the experiment described in
+  Table \ref{tab:prevalence} are indicated with red asterisks.}
+\label{fig:auc_boxplot}
+\end{figure}
+
+%% graphical representation of the degree of oversampling for the specified number of iterations
+
+\clearpage
+\begin{figure}[p]
+%\includegraphics[]{figs/oversampling.jpg} 
+\includegraphics[width=\textwidth]{\Sexpr{matcharg(sources, 'oversampling')}}
+\caption[Degree of Oversampling (supplementary)]{Oversampling as a function on number
+  of iterations. Each panel title indicates the total number of
+  occurrences of individual i,j pairs. The horizontal axis is the
+  number of iterations and the vertical axis is the frequency at which
+  the indicated count of occurrences of unique i,j sample pairs occur
+  in the simulation.}
+\label{fig:oversampling}
+\end{figure}

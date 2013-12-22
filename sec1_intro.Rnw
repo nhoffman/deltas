@@ -1,0 +1,76 @@
+A delta check is performed by comparing the concentrations of one or
+more analytes from two successive samples from the same patient. If
+the magnitude of the difference between the two measurements (the
+``delta'') falls outside of a predetermined range, the deviation is
+taken as evidence of a possible error. Calculations using either
+absolute change or proportional change, with a variety of strategies
+for incorporating the time elapsed between results have been tried
+with varying success to predict errors \cite{nosanchuk:1974,
+  whitehurst:1975, sheiner:1979, wheeler:1977, wheeler:1981,
+  iizuka:1982, lacher:1988, lacher:1990}. Delta checks, first proposed
+by Nosanchuk and Gottman in 1974 \cite{nosanchuk:1974}, were
+implemented as manually-calculated comparisons of successive patient
+test results. With the widespread use of automated instruments and
+computer-based systems, delta checks have since become an integral
+part of quality assurance procedures in the clinical laboratory.
+
+The underlying assumption in defining delta criteria is that a
+discrepancy between two successive results that is larger than
+expected given the biological variability of a laboratory test is
+indicative of error. Although delta checks were initially formulated
+to detect analytical error, this source of variability has been
+greatly reduced in the modern laboratory by improved methodology and
+instrumentation. Anecdotally, we recently discontinued the practice of
+repeating tests performed on our automated chemistry analyzers that
+generated results in the critical range after failing to generate a
+single meaningfully different second result on our current platform.
+Therefore in our laboratory, and perhaps more generally, delta checks
+are performed primarily to detect pre-analytical error, particularly
+mislabeled specimens.
+
+A delta check can therefore be thought of as a screening test for
+preanalytical error. And like any screening test, the utility of a
+delta check is primarily limited by specificity. A number of studies
+have described frequent false positives associated with delta check
+procedures at the cost of a significant allocation of technologist
+time spent on follow-up \cite{sheiner:1979, sher:1979, wheeler:1981,
+  iizuka:1982}.
+
+Over the years, several novel approaches to the implementation and
+validation of delta checks have been published in an effort to improve
+their performance \cite{sheiner:1979, iizuka:1982, kim:1990}. A few
+studies describe the use of randomized patient data (representing
+known mislabeled specimens) as a method to determine true positive and
+false negative rates \cite{sheiner:1979, iizuka:1982}. Some of the
+more interesting delta check methods published include two studies
+conducted in 1990. One, by Kim et al., used the variability of patient
+data to determine appropriate delta methods; another by Lacher et
+al. defined a multivariate delta method \cite{kim:1990, lacher:1990}.
+
+In practice, however, delta check thresholds are typically established
+in individual laboratories based on the experience and judgement of
+the laboratory director, but (perhaps ironically, given the setting)
+rarely on the basis of the sort of validation of test performance that
+is routinely performed for the analytical methods themselves. In
+addition, validation of the performance of even simple rules using
+actual laboratory data is extremely difficult given the low frequency
+of errors and the absence of a gold standard for detecting them.
+
+Having nearly completed a transition to total laboratory automation
+for routine chemistry tests, we wished to re-evaluate longstanding
+quality assurance procedures given the improvement and evolution of
+analytical and specimen handling processes. To better characterize the
+performance of simple delta check rules, we used historical laboratory
+data to simulate comparisons between pairs of successive results for
+common laboratory tests performed on specimens from the same patient
+(corresponding to a correctly labeled second specimen) or different
+patients (corresponding to a mislabeled second specimen). Using these
+pairs of measurements, we determined the overall usefulness of each
+test or analyte as the target of a delta comparison, and evaluated the
+performance of rules currently in use in our laboratory. In addition,
+alternate cutoff values were calculated for a range of sensitivity
+targets. Because complex delta check rules are difficult to implement
+given limitations of laboratory information systems and middleware
+products, we focus here on the simplest, but probably most widely used
+of rules: the absolute values of the difference between successive
+test results.

@@ -1,0 +1,110 @@
+\documentclass[10pt]{article}
+\usepackage[vmargin=2cm,lmargin=2cm,rmargin=4cm]{geometry}
+\geometry{letterpaper}
+
+\usepackage{amsmath}
+\usepackage{amscd}
+% \usepackage{longtable}
+% \usepackage{colortbl}
+% \usepackage{rotating}
+% \usepackage{textcomp}
+
+% \usepackage{hyperref} % provides \url{}
+\usepackage{graphicx}
+
+\usepackage{fancyvrb}
+%% \usepackage{endfloat}
+
+%% set up bibliography
+\usepackage[sort&compress,numbers]{natbib}
+
+\usepackage{Sweave}
+%% override settings defining behavior of code blocks in default
+%% Sweave.sty. This code block must appear after the
+%% \usepackage{Sweave} and \usepackage{fanvyvrb} directives
+\RecustomVerbatimEnvironment{Sinput}{Verbatim}{fontshape=sl,fontsize=\small}
+\RecustomVerbatimEnvironment{Soutput}{Verbatim}{fontsize=\small,samepage=true}
+\RecustomVerbatimEnvironment{Scode}{Verbatim}{fontshape=sl}
+
+%%%%% set some Sweave options for the document
+% figures saved in figdir; create if necessary below
+<<echo=FALSE>>=
+figdir <- 'figs'
+dir.create(figdir, showWarnings=FALSE)
+@ 
+\SweaveOpts{prefix.string=\Sexpr{figdir}/report,eps=FALSE,echo=FALSE} 
+\setkeys{Gin}{width=\textwidth} % note \textwidth undefined in preamble
+
+%%%%%%%%%%%%%%%%%% customize the LaTeX environment
+% compact spacing between list and enumerate items
+\usepackage{paralist}
+\setlength{\pltopsep}{0.5ex} % space before first item
+\setlength{\plitemsep}{0.25ex} % space between items
+\renewenvironment{itemize}{\begin{compactitem}}{\end{compactitem}}
+\renewenvironment{enumerate}{\begin{compactenum}}{\end{compactenum}}
+
+% no indent at start of paragraph
+% \setlength\parindent{0in}
+% skip a line between paragraphs
+% \setlength\parskip{1ex}
+
+% prettier \marginpar
+% \let\oldmarginpar\marginpar
+% \renewcommand\marginpar[1]{\-\oldmarginpar[\raggedleft\footnotesize #1]%
+% {\raggedright\footnotesize #1}}
+
+% margin notes in draft
+% \textwidth=5.2in
+% \marginparwidth=1.5in
+% \let\oldmarginpar\marginpar
+% \renewcommand\marginpar[1]{\textit{(see margin note)}\-\oldmarginpar[\raggedleft\footnotesize #1]%
+% {\raggedright\footnotesize #1}}
+
+\title{Simulations of delta check rule performance to detect specimen
+  mislabeling using historical laboratory data}
+
+\author{Frederick G. Strathmann, Geoff S. Baird, and Noah G. Hoffman}
+
+\begin{document}
+\maketitle
+
+<<loadData,echo=FALSE>>=
+source('scripts/common.R')
+sources <- commandArgs(trailingOnly=TRUE)
+@
+
+\section{Introduction}
+
+\input{\Sexpr{matcharg(sources, 'intro')}}
+
+\section{Methods}
+
+\input{\Sexpr{matcharg(sources, 'methods')}}
+
+\section{Results}
+
+\input{\Sexpr{matcharg(sources, 'results')}}
+
+\section{Discussion}
+
+\input{\Sexpr{matcharg(sources, 'discussion')}}
+
+\bibliography{paper}
+\bibliographystyle{abbrvnat}
+
+\section{Figure Legends}
+
+\input{\Sexpr{matcharg(sources, 'legends')}}
+
+\section{Figures and Tables}
+
+\input{\Sexpr{matcharg(sources, 'figures_and_tables')}}
+
+\section{Supplementary material}
+
+\input{\Sexpr{matcharg(sources, 'supplement')}}
+
+\end{document}
+
+
+
