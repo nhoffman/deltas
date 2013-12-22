@@ -15,10 +15,17 @@ import ConfigParser
 Decider('MD5-timestamp')
 
 #### define variables and environment
-vars = Variables()
+vars = Variables(None, ARGUMENTS)
 vars.Add('constants', 'globally used variables', 'data/constants.R')
 vars.Add('functions', 'shared functions', 'scripts/functions.R')
-env = Environment(ENV=os.environ, variables=vars)
+vars.Add('nproc', 'Number of concurrent processes for resampling experiment', default=6)
+
+varargs = dict({opt.key: opt.default for opt in vars.options}, **vars.args)
+nproc = int(varargs['nproc'])
+
+# NPROC provides number of processes for auc_distribution.R
+env = Environment(ENV=dict(os.environ, NPROC=nproc), variables=vars)
+Help(vars.GenerateHelpText(env))
 
 ### Builders
 
@@ -224,4 +231,3 @@ pdf, cruft = env.Command(
     action = 'rm -f $TARGET && scripts/texi2dvi --pdf --tidy $SOURCE'
     )
 Default(pdf)
-

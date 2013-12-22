@@ -2,14 +2,12 @@
 ## output = env.RScript(target=[targets], source=['scripts/scriptname.R', ...])
 library(multicore)
 
-ncores <- 6
-
-resample <- function(cmp, analytes, iterations, nsamples, hosp){ 
+resample <- function(cmp, analytes, iterations, nsamples, hosp, nproc){
   ## Calculate a distribution of AUC values for a given hospital
   ## * iterations - number of sampling experiments
   ## * nsamples - number of samples to select in each experiment
-  
-  aucList <- multicore::mclapply(seq(iterations), mc.cores=ncores, FUN=function(iter){
+
+  aucList <- multicore::mclapply(seq(iterations), mc.cores=nproc, FUN=function(iter){
     samples <- functions$getSamples(x = cmp,
                                     limit = cmp$hospital %in% hosp & cmp$LocType %in% 'IP',
                                     iterations = nsamples,
@@ -31,6 +29,13 @@ resample <- function(cmp, analytes, iterations, nsamples, hosp){
 
 source('scripts/common.R')
 args <- getargs(argv=commandArgs(trailingOnly=TRUE), ntargets=1)
+
+if(Sys.getenv('NPROC')==''){
+  nproc <- 2
+}else{
+  nproc <- as.integer(Sys.getenv('NPROC'))
+}
+
 sources <- args$sources
 targets <- args$targets
 
@@ -52,8 +57,8 @@ nsamples <- 1000
 cmp <- data$cmp
 analytes <- data$analytes
 
-htab <- resample(cmp, analytes, iterations, nsamples, hosp='H')
-utab <- resample(cmp, analytes, iterations, nsamples, hosp='U')
+htab <- resample(cmp, analytes, iterations, nsamples, hosp='H', nproc=nproc)
+utab <- resample(cmp, analytes, iterations, nsamples, hosp='U', nproc=nproc)
 
 aucTab <- rbind(htab, utab)
 save(aucTab, file=outfile)
