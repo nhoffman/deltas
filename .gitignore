@@ -1,2 +1,5 @@
 output
 .sconsign.dblite
+paper.t2d
+figs/
+*.tex

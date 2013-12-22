@@ -228,6 +228,6 @@ tex = env.sweave(
 pdf, cruft = env.Command(
     target = Flatten(['paper.pdf', Dir('paper.t2d')]),
     source = tex,
-    action = 'rm -f $TARGET && scripts/texi2dvi --pdf --tidy $SOURCE'
+    action = 'rm -f $TARGET && texi2pdf --tidy $SOURCE'
     )
 Default(pdf)
