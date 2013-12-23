@@ -52,7 +52,7 @@ library(ggplot2)
 themeObj <- function(base_size=15){
 
   none <- theme_blank()
-  
+
   structure(list(
                  panel.grid.major=none,
                  panel.grid.minor=none,
@@ -72,11 +72,11 @@ datSub <- subset(dat, Group==1)
 
 save(datSub, file=outfile)
 
-q <- ggplot(datSub, aes(x=N, y=Freq))
-qq <- q + geom_line()+
-  themeObj()
-  #facet_wrap(~Group, scales='free')
-
 pdf(figfile)
-print(qq)
+
+## q <- ggplot(datSub, aes(x=N, y=Freq))
+## qq <- q + geom_line()+
+##   themeObj()
+##  #facet_wrap(~Group, scales='free')
+## print(qq)
 invisible(dev.off())

@@ -4,17 +4,17 @@ library(reshape)
 ## custom ggplot theme
 theme_custom <- function(base_size=15){
 
-  none <- theme_blank()
+  none <- element_blank()
 
   structure(list(
                  panel.grid.major=none,
                  panel.grid.minor=none,
-                 panel.background=theme_rect(fill='white'),
-                 panel.border=theme_rect(colour='white'),
-                 strip.background=theme_rect(fill='bisque'),
-                 legend.key=theme_rect(colour='white'),
-                 axis.text.x=theme_text(colour='black', vjust=1),
-                 axis.text.y=theme_text(colour='black', hjust=1)
+                 panel.background=element_rect(fill='white'),
+                 panel.border=element_rect(colour='white'),
+                 strip.background=element_rect(fill='bisque'),
+                 legend.key=element_rect(colour='white'),
+                 axis.text.x=element_text(colour='black', vjust=1),
+                 axis.text.y=element_text(colour='black', hjust=1)
                  ),
             class='options'
             )
@@ -57,13 +57,13 @@ pdfFile <- targets[1]
 ## generate the figure
 pdf(pdfFile, width=6, height=2.5)
 
-p <- ggplot(mapping = aes(variable, value))+
-  theme_custom()+
-  geom_boxplot(data=aucsL, aes(fill=hosp), outlier.size=1)+
-  geom_point(data=aucValsc, aes(Analyte, AUC), colour='red', shape=8, position=position_dodge(width=.85))+
-  scale_fill_manual(values = c('white', 'grey'), name='Medical\nCenter')+
-  labs(x='Analyte', y='AUC')
+## p <- ggplot(mapping = aes(variable, value))+
+##   theme_custom()+
+##   geom_boxplot(data=aucsL, aes(fill=hosp), outlier.size=1)+
+##   geom_point(data=aucValsc, aes(Analyte, AUC), colour='red', shape=8, position=position_dodge(width=.85))+
+##   scale_fill_manual(values = c('white', 'grey'), name='Medical\nCenter')+
+##   labs(x='Analyte', y='AUC')
 
-print(p)
+## print(p)
 
 invisible(dev.off())

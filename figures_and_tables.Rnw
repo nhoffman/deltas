@@ -3,7 +3,7 @@ source('scripts/common.R')
 sources <- commandArgs(trailingOnly=TRUE)
 @
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%% Figures %%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
@@ -58,8 +58,7 @@ outliers]{Distributions of delta calculations from the same patient
 %% boxplot of multiple simulations
 \clearpage
 \begin{figure}[p]
-%\includegraphics[]{figs/boxplot.pdf} 
-\includegraphics[width=\textwidth]{\Sexpr{matcharg(sources, 'auc_boxplot')}}
+% \includegraphics[width=\textwidth]{\Sexpr{matcharg(sources, 'auc_boxplot')}}
 \caption[Distribution of AUCs from multiple simulations]{Distributions
   of AUC values describing delta check performance in 1000 experiments
   of 1000 sampling events each; results using data from Hospital 1 and
@@ -73,8 +72,7 @@ outliers]{Distributions of delta calculations from the same patient
 
 \clearpage
 \begin{figure}[p]
-%\includegraphics[]{figs/oversampling.jpg} 
-\includegraphics[width=\textwidth]{\Sexpr{matcharg(sources, 'oversampling')}}
+% \includegraphics[width=\textwidth]{\Sexpr{matcharg(sources, 'oversampling')}}
 \caption[Degree of Oversampling (supplementary)]{Oversampling as a function on number
   of iterations. Each panel title indicates the total number of
   occurrences of individual i,j pairs. The horizontal axis is the

@@ -22,21 +22,22 @@ optCutoff <- functions$optCutoff
 outfile <- targets[1]
 
 cutoffs <- with(experiment, {
-  
+
   analytes <- colnames(deltas) ## could limit this in constants
   data <- deltas[,analytes]
   ##remove deltas from renal unit
   #dataRes <- deltas[-renal,analytes]
   truth <- labels$mislabel
   #truthRes <- subset(labels, loc!="H.RENAL", mislabel)
-  
+
   current <- constants$deltaCutoffs[analytes]
   names(current) <- analytes
-  
-  data.frame(                        
+
+  data.frame(
        current=current,
        sens20=apply(data, 2, function(vals) sensCutoff(vals, truth, 0.2)),
-       sens80=apply(data, 2, function(vals) sensCutoff(vals, truth, 0.8)),
+       sens50=apply(data, 2, function(vals) sensCutoff(vals, truth, 0.5)),
+      sens80=apply(data, 2, function(vals) sensCutoff(vals, truth, 0.8)),
        prbe=apply(data, 2, function(vals) optCutoff(vals, truth, 'prbe'))
        #sens20Res=apply(dataRes, 2, function(vals) sensCutoff(vals, truthRes, 0.2)),
        #sens80Res=apply(dataRes, 2, function(vals) sensCutoff(vals, truthRes, 0.8)),
