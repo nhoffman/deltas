@@ -21,8 +21,6 @@ samples <- loadf(sampleFile)$samples
 str(samples)
 ## determine the degree of oversampling
 
-
-
 print('i')
 iTab <- sort(table(samples$i), decreasing=TRUE)
 print(table(iTab))
@@ -49,34 +47,23 @@ dat <- do.call(rbind, lapply(seq(100, nrow(samples), 100), function(N){
 }))
 
 library(ggplot2)
-themeObj <- function(base_size=15){
+library(grid)
 
-  none <- theme_blank()
+source('scripts/ggplot2theme.R')
 
-  structure(list(
-                 panel.grid.major=none,
-                 panel.grid.minor=none,
-                 panel.background=theme_rect(fill='white'),
-                 panel.border=theme_rect(colour='black'),
-                 strip.background=theme_rect(colour='white'),
-                 legend.key=theme_rect(colour='white'),
-                 axis.text.x=theme_text(colour='black', hjust=1, angle=45),
-                 axis.text.y=theme_text(colour='black', hjust=1)
-                 ),
-            class='options'
-            )
-}
 colnames(dat) <- c('N', 'Group', 'Freq')
 
 datSub <- subset(dat, Group==1)
 
 save(datSub, file=outfile)
 
-pdf(figfile)
+jpeg(figfile)
 
-## q <- ggplot(datSub, aes(x=N, y=Freq))
-## qq <- q + geom_line()+
-##   themeObj()
-##  #facet_wrap(~Group, scales='free')
-## print(qq)
+q <- ggplot(datSub, aes(x=N, y=Freq))
+qq <- q + geom_line()+
+  theme_QC()+
+ facet_wrap(~Group, scales='free')
+
+print(qq)
+
 invisible(dev.off())
