@@ -1,7 +1,10 @@
 library(ROCR)
 library(ggplot2)
+library(grid)
 
 source('scripts/common.R')
+source('scripts/ggplot2theme.R')
+
 args <- getargs(argv=commandArgs(trailingOnly=TRUE), ntargets=1)
 sources <- args$sources
 targets <- args$targets
@@ -104,22 +107,14 @@ pdf(pdfFile, width=7, height=6)
 ##   geom_hline(data=lines, aes(yintercept=sens))+
 ##   geom_vline(data=lines, aes(xintercept=1-spec))
 
-p <- ggplot(data=rocPlot, aes(specificity, sensitivity))+  
+p <- ggplot(data=rocPlot, aes(specificity, sensitivity))+
+  theme_QC()+
   geom_line(data=rocPlot)+
   facet_wrap(~analyte)+
   geom_point(data=curr, aes(1-spec, sens), shape=1, size=3)+
   geom_point(data=prbe, aes(1-spec, sens), shape=20, size=3)+
   geom_point(data=sens20, aes(1-spec, sens), shape=24, size=3)+
-  geom_point(data=sens80, aes(1-spec, sens), shape=25, size=3)+
-  opts(panel.grid.major=theme_blank())+
-  opts(aspect.ratio = 1)+
-  opts(panel.grid.minor=theme_blank())+
-  opts(panel.background=theme_rect(fill='white'))+
-  opts(panel.border=theme_rect(colour='black'))+
-  opts(axis.text.x=theme_text(colour='black', angle=45, hjust=1))+
-  labs(x='1 - specificity')+
-  opts(axis.text.y=theme_text(colour='black', hjust=1))+
-  opts(strip.background=theme_rect(fill='bisque'))
+  geom_point(data=sens80, aes(1-spec, sens), shape=25, size=3)
 
 print(p)
 
