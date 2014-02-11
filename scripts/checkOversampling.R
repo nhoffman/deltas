@@ -18,25 +18,13 @@ outfile <- targets[1]
 figfile <- targets[2]
 
 samples <- loadf(sampleFile)$samples
-str(samples)
+
 ## determine the degree of oversampling
-
-print('i')
 iTab <- sort(table(samples$i), decreasing=TRUE)
-print(table(iTab))
-
-print('j')
 jTab <- sort(table(samples$j), decreasing=TRUE)
-print(table(jTab))
-
-print('k')
 kTab <- sort(table(samples$k), decreasing=TRUE)
-print(table(kTab))
-
 ijPairs <- checkSampling('i','j', samples)
-print(ijPairs)
 ikPairs <- checkSampling('i','k', samples)
-print(ikPairs)
 
 ## dat <- do.call(rbind,lapply(seq(100, nrow(samples), 100), function(N){
 ##   c(N=N, checkSampling('i','j', samples[1:N,]))

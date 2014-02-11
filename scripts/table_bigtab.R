@@ -3,9 +3,11 @@ library(xtable)
 asLatex <- function(x){
   tab <- do.call(cbind, x)
   colnames(tab) <- rep(c('cutoff','PPV','NPV','PPT'), 4)
-  print(xtable(tab, digits = c(0,rep(c(1,2,1,2),4))),
-        only.contents=TRUE,
-        file = '/dev/null')
+  print(
+      xtable(tab, digits = c(0,rep(c(1,2,1,2),4))),
+      ## xtable(tab),
+      only.contents=TRUE,
+      file = '/dev/null')
 }
 
 source('scripts/common.R')
